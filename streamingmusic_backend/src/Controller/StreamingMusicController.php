@@ -8,6 +8,7 @@ use App\Document\User;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -115,6 +116,29 @@ class StreamingMusicController extends AbstractFOSRestController
 
             return $pls;
 
+    }
+    /**
+     * @Rest\Delete("/playlist/delete/{id}")
+     */
+    public function deletePlayList($id, DocumentManager $manager ){
+        $pl = $manager->getRepository(PlayList::class)
+            ->find($id);
+        $manager->remove($pl);
+        $filesystem = new Filesystem();
+
+        $musics = $manager->getRepository(Music::class)
+                ->findBy(['playList' => $id]);
+        for($i = 0; $i < count($musics); $i++){
+            $manager->remove($musics[$i]);
+            $filesystem->remove($musics[$i]->getFile());
+        }
+
+        $manager->flush();
+
+        return new JsonResponse([
+            'status' => 'success',
+            'message' => 'Your playlist has been deleted successfully.'
+        ]);
     }
 
     /**

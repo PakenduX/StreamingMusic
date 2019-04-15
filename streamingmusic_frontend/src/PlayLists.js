@@ -28,7 +28,6 @@ class PlayLists extends React.Component{
             name: this.state.name,
             user: this.state.user
         };
-        console.log(data);
 
         axios.post('http://localhost:8000/playlist/create', data)
             .then(res => {
