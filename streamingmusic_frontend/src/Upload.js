@@ -32,7 +32,7 @@ class Upload extends React.Component{
         data.append('playlist', this.state.playlist);
         data.append('user', this.state.userId);
 
-        axios.post('http://localhost:8000/music/create', data)
+        axios.post('http://mamadembele.fr:8000/music/create', data)
             .then(res => {
                 if(res.data.status === 'error')
                     this.setState({error: <div className="alert alert-danger" role="alert">{res.data.message}</div>});
@@ -45,7 +45,7 @@ class Upload extends React.Component{
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/users/${this.state.username}`)
+        axios.get(`http://mamadembele.fr:8000/users/${this.state.username}`)
             .then(res => {
                 this.setState({userId: res.data.id});
 

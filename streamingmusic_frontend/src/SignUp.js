@@ -30,7 +30,7 @@ export default class SignUp extends React.Component{
       lastname: this.state.lastname,
     };
 
-    axios.post('http://localhost:8000/signUp', data)
+    axios.post('http://mamadembele.fr:8000/signUp', data)
         .then(res => {
           if(res.data.status === 'error')
             this.setState({error: <div className="alert alert-danger" role="alert">{res.data.message}</div>});

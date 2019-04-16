@@ -14,7 +14,7 @@ class AffichagePlaylist extends React.Component{
     delete(id){
 
         if(window.confirm('Are you sure you want to delete your playlist ?'))
-            axios.delete(`http://localhost:8000/playlist/delete/${id}`)
+            axios.delete(`http://mamadembele.fr:8000/playlist/delete/${id}`)
                 .then(res => {
                     window.location.reload();
                 })

@@ -93,7 +93,7 @@ class StreamingMusicController extends AbstractFOSRestController
         } catch (FileException $e) {
             echo sprintf($e);
         }
-        $music->setFile('http://localhost:8000/uploads/musics/'.$fileName);
+        $music->setFile('http://mamadembele.fr:8000/uploads/musics/'.$fileName);
         $music->setUser($request->get('user'));
         $music->setPlayList($request->get('playlist'));
         $music->setTitle($file->getClientOriginalName());

@@ -29,7 +29,7 @@ class PlayLists extends React.Component{
             user: this.state.user
         };
 
-        axios.post('http://localhost:8000/playlist/create', data)
+        axios.post('http://mamadembele.fr:8000/playlist/create', data)
             .then(res => {
                window.location.reload();
             })
@@ -39,10 +39,10 @@ class PlayLists extends React.Component{
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/users/${this.state.username}`)
+        axios.get(`http://mamadembele.fr:8000/users/${this.state.username}`)
             .then(res => {
                 this.setState({user: res.data.id});
-                axios.get(`http://localhost:8000/playlist/${res.data.id}`)
+                axios.get(`http://mamadembele.fr:8000/playlist/${res.data.id}`)
                     .then(response => {
                         this.setState({ playlists: response.data });
                     })

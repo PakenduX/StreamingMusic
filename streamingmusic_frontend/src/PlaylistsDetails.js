@@ -16,7 +16,7 @@ class PlaylistsDetails extends React.Component{
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/music/${this.state.plId}`)
+        axios.get(`http://mamadembele.fr:8000/music/${this.state.plId}`)
             .then(res => {
                 this.setState({musics: res.data});
             })

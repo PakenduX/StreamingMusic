@@ -31,7 +31,7 @@ class SignIn extends React.Component{
             password: this.state.password,
         };
 
-        axios.post('http://localhost:8000', data)
+        axios.post('http://mamadembele.fr:8000', data)
             .then(res => {
                 if(res.data.status === 'error')
                     this.setState({error: <div className="alert alert-danger" role="alert">{res.data.message}</div>});
